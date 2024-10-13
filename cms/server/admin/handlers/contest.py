@@ -29,7 +29,7 @@
 """
 
 from cms import ServiceCoord, get_service_shards, get_service_address
-from cms.db import Contest, Participation, Submission
+from cms.db import Contest, Participation, Submission, User
 from cmscommon.datetime import make_datetime
 
 from .base import BaseHandler, SimpleContestHandler, SimpleHandler, \
@@ -74,9 +74,11 @@ class ContestHandler(SimpleContestHandler("contest.html")):
     @require_permission(BaseHandler.PERMISSION_ALL)
     def post(self, contest_id):
         contest = self.safe_get_item(Contest, contest_id)
+        allowed_registration = True
 
         try:
             attrs = contest.get_attrs()
+            allowed_registration = attrs.get("allow_registration")
 
             self.get_string(attrs, "name", empty=None)
             self.get_string(attrs, "description")
@@ -135,6 +137,23 @@ class ContestHandler(SimpleContestHandler("contest.html")):
                 make_datetime(), "Invalid field(s).", repr(error))
             self.redirect(self.url("contest", contest_id))
             return
+
+        # Update paricipations when allow_registration is enabled
+        if attrs.get("allow_registration") and not allowed_registration:
+            for unregistered_user in (
+                self.sql_session.query(User)
+                .filter(
+                    User.id.notin_(
+                        self.sql_session.query(Participation.user_id)
+                        .filter(Participation.contest == contest)
+                        .all()
+                    )
+                )
+                .all()
+            ):
+                self.sql_session.add(
+                        Participation(contest=contest, user=unregistered_user)
+                )
 
         if self.try_commit():
             # Update the contest on RWS.

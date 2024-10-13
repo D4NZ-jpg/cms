@@ -40,7 +40,7 @@ except ImportError:
 from sqlalchemy.orm.exc import NoResultFound
 
 from cms import config
-from cms.db import PrintJob, User, Participation, Team
+from cms.db import PrintJob, User, Participation, Team, Contest
 from cms.grading.steps import COMPILATION_MESSAGES, EVALUATION_MESSAGES
 from cms.server import multi_contest
 from cms.server.contest.authentication import validate_login
@@ -103,11 +103,10 @@ class RegistrationHandler(ContestHandler):
             if tot_participants > 0:
                 raise tornado_web.HTTPError(409)
 
-        # Create participation
-        team = self._get_team()
-        participation = Participation(user=user, contest=self.contest,
-                                      team=team)
-        self.sql_session.add(participation)
+        # Add user to all contest with allow_registration enabled
+        for contest in self.sql_session.query(Contest):
+            if contest.allow_registration:
+                self.sql_session.add(Participation(user=user, contest=contest))
 
         self.sql_session.commit()
 

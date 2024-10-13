@@ -493,6 +493,10 @@ msgstr ""
 msgid "Failed to log in."
 msgstr "Acceso denegado."
 
+msgid ""
+"If you have a contest account, it's valid for this contest. New users can register below."
+msgstr "Si tiene una cuenta de concurso, es válida para este concurso. Los nuevos usuarios pueden registrarse abajo."
+
 msgid "Welcome"
 msgstr "Bienvenido"
 
@@ -508,6 +512,12 @@ msgstr "Password"
 msgid "Login"
 msgstr "Acceder"
 
+msgid "Don't have an account?"
+msgstr "¿No tiene una cuenta?"
+
+msgid "Register"
+msgstr "Registrarse"
+
 msgid "New message"
 msgstr "Mensaje nuevo"
 
@@ -516,6 +526,72 @@ msgstr "Anuncio nuevo"
 
 msgid "New answer"
 msgstr "Respuesta nueva"
+
+
+msgid "Registration"
+msgstr "Registro"
+
+msgid "Please fill in the fields to register"
+msgstr "Por favor, complete los campos para registrarse"
+
+msgid "New user"
+msgstr "Usuario nuevo"
+
+msgid "Join contest"
+msgstr "Unirse al concurso"
+
+msgid "The passwords do not match!"
+msgstr "¡Las contraseñas no coinciden!"
+
+msgid "This username is already taken, please choose a different one."
+msgstr "Este nombre de usuario ya está en uso, por favor elija uno diferente."
+
+msgid "This user is already registered in the contest."
+msgstr "Este usuario ya está registrado en el concurso."
+
+msgid "No such user."
+msgstr "No existe tal usuario."
+
+msgid "The password is not correct."
+msgstr "La contraseña no es correcta."
+
+msgid "First name"
+msgstr "Nombre"
+
+msgid "Last name"
+msgstr "Apellido"
+
+msgid "E-mail"
+msgstr "Correo electrónico"
+
+msgid "Representing"
+msgstr "Representando a"
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Confirm password"
+msgstr "Confirmar contraseña"
+
+msgid "Must be one character or more."
+msgid_plural "Must be %(min_length)s characters or more."
+msgstr[0] "Debe tener al menos un carácter."
+msgstr[1] "Debe tener %(min_length)s caracteres o más."
+
+msgid "Registered in the contest successfully!"
+msgstr "¡Registrado en el concurso exitosamente!"
+
+msgid "Your username is:"
+msgstr "Su nombre de usuario es:"
+
+msgid "Your password is stored securely."
+msgstr "Su contraseña se almacena de forma segura."
+
+msgid "Back to login"
+msgstr "Volver a iniciar sesión"
 
 #, python-format
 msgid "%d unread"

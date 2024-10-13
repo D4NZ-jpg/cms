@@ -90,6 +90,11 @@ $(document).ready(function () {
             <div class="login_box hero-unit">
                 <h1>{% trans %}Welcome{% endtrans %}</h1>
                 <p>{% trans %}Please log in{% endtrans %}</p>
+                {% if contest.allow_registration %}
+                <p style="margin: 0 0 9px 0;">
+                    {% trans %}If you have a contest account, it's valid for this contest. New users can register below.{% endtrans %}
+                </p>
+                {% endif %}
                 <form class="form-horizontal" action="{{ contest_url("login") }}" method="POST">
                     {{ xsrf_form_html|safe }}
                     {% set next_page = handler.get_argument("next", none) %}
